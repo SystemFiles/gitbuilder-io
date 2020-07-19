@@ -1,0 +1,51 @@
+{
+	"name": "gitbuilder-io",
+	"version": "1.0.0",
+	"description": "A CLI for bootstrapping your git projects",
+	"main": "app.js",
+	"scripts": {
+		"lint": "eslint --init",
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"dev": "nodemon app.js",
+		"start": "node app.js"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/SystemFiles/gitbuilder-io.git"
+	},
+	"keywords": [
+		"github",
+		"git",
+		"project",
+		"repo",
+		"builder"
+	],
+	"author": "Ben Sykes",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/SystemFiles/gitbuilder-io/issues"
+	},
+	"dependencies": {
+		"@octokit/auth-token": "^2.4.2",
+		"@octokit/rest": "^18.0.1",
+		"axios": "^0.19.2",
+		"chalk": "^4.1.0",
+		"clear": "^0.1.0",
+		"clui": "^0.3.6",
+		"commander": "^5.1.0",
+		"configstore": "^5.0.1",
+		"dotenv": "^8.2.0",
+		"execa": "^4.0.3",
+		"figlet": "^1.5.0",
+		"inquirer": "^7.3.2",
+		"listr": "^0.14.3",
+		"lodash": "^4.17.19",
+		"simple-git": "^2.13.2",
+		"touch": "^3.1.0"
+	},
+	"devDependencies": {
+		"eslint": "^7.4.0",
+		"nodemon": "^2.0.4"
+	},
+	"homepage": "https://github.com/SystemFiles/gitbuilder-io#readme"
+}
