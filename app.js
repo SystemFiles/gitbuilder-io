@@ -1,5 +1,4 @@
 const chalk = require('chalk')
-const { Spinner } = require('clui')
 const Listr = require('listr')
 
 // Local require
@@ -8,6 +7,7 @@ const { sayTitle } = require('./utils')
 const repo = require('./lib/repo')
 const inquirer = require('./lib/inquirer')
 const github = require('./lib/github')
+const files = require('./lib/files')
 
 const run = async () => {
 	sayTitle(version)
@@ -15,10 +15,15 @@ const run = async () => {
 	let octokitInstance = await github.getInstance()
 	let projectDetails = await inquirer.askProjectDetails()
 
-	console.log(projectDetails)
-
 	// Start building local repository
-	let ignoreFiles = await inquirer.askGitIgnore()
+	if (!files.directoryExists(`${files.getCurrentDirectory()}/${projectDetails.project_name}`)) {
+		await files.makeProjectDirectory(projectDetails.project_name)
+	}
+	let respAskIgnore = await inquirer.askGitIgnore(projectDetails.project_name)
+	if (!files.directoryExists(`${files.getProjectDirectoryIfExists(projectDetails.project_name)}/.gitignore`)) {
+		files.touch(`${files.getProjectDirectoryIfExists(projectDetails.project_name)}/.gitignore`)
+	}
+	await files.writeGitIgnoreToProject(projectDetails.project_name, respAskIgnore.gitignore_files)
 
 	// Start building the remote repository
 	console.log(chalk.bold(`\n--------- [ Starting build for ${projectDetails.project_name} ] ---------\n`))
