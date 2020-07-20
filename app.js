@@ -24,22 +24,20 @@ const run = async () => {
 		files.touch(`${files.getProjectDirectoryIfExists(projectDetails.project_name)}/.gitignore`)
 	}
 
+	console.log(chalk.bold(`\n--------- [ Starting local build for ${projectDetails.project_name} ] ---------\n`))
 	await new Listr(
 		[
 			{
 				title : 'Write .gitignore to project directory',
 				task  : async () =>
-					await files
-						.writeGitIgnoreToProject(projectDetails.project_name, respAskIgnore.gitignore_files)
-						.catch((err) => {
-							throw new Error(`Problem writing .gitignore to project. ${err}`)
-						})
+					await files.writeGitIgnoreToProject(projectDetails.project_name, respAskIgnore.gitignore_files),
+				skip  : () => respAskIgnore.length === 0
 			},
 			{
 				title : 'Copy selected README template to project directory',
 				task  : async () =>
 					await files.copyReadmeTemplateToProjects(projectDetails.project_name, projectDetails.readme_style),
-				skip  : () => projectDetails.include_readme
+				skip  : () => !projectDetails.include_readme
 			},
 			{
 				title : 'Copy project structure template',
@@ -48,17 +46,19 @@ const run = async () => {
 			},
 			{
 				title : 'Initialize project as Git project',
-				task  : async () => await repo.createLocalRepo(),
-				skip  : () => true
+				task  : async () => {
+					projectDetails['init_resp'] = await repo.initLocalRepo(projectDetails.project_name)
+				}
 			}
 		],
 		{ concurrent: true }
 	)
 		.run()
 		.then(() => console.log(chalk.greenBright('Successfully created local project repository!')))
+		.catch((err) => console.log(chalk.red(`Problem with local build...${err}`)))
 
 	// Start building the remote repository
-	console.log(chalk.bold(`\n--------- [ Starting build for ${projectDetails.project_name} ] ---------\n`))
+	console.log(chalk.bold(`\n--------- [ Starting remote build for ${projectDetails.project_name} ] ---------\n`))
 	await new Listr([
 		{
 			title : 'Create remote repository',
@@ -68,17 +68,17 @@ const run = async () => {
 					.catch((err) => {
 						throw new Error(`Problem creating remote repository. ${err}`)
 					})
-			},
-			skip  : () => true
+			}
 		},
 		{
 			title : 'Attach local project repository to remote',
-			task  : async () => {
-				await repo.attachToRemote(projectDetails.https_url).catch((err) => {
-					throw new Error(`Problem attaching local repository to remote. ${err}`)
-				})
-			},
-			skip  : () => true
+			task  : async () => await repo.attachToRemote(projectDetails.project_name, projectDetails.https_url),
+			skip  : () => projectDetails.init_resp === null
+		},
+		{
+			title : 'Publish to repository with project template',
+			task  : async () => await repo.publishProjectContent(projectDetails.project_name),
+			skip  : () => projectDetails.https_url.length === 0
 		}
 	])
 		.run()
