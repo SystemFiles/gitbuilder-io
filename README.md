@@ -1,102 +1,101 @@
 <p align="center">
   <a href="" rel="noopener">
- <img width=200px height=200px src="https://i.imgur.com/6wj0hh6.jpg" alt="Project logo"></a>
+ <img width=376px height=265px src="./doc/logo.png" alt="gitBuilder.io Logo"></a>
 </p>
-
-<h3 align="center">Project Title</h3>
 
 <div align="center">
 
 [![Status](https://img.shields.io/badge/status-active-success.svg)]()
-[![GitHub Issues](https://img.shields.io/github/issues/kylelobo/The-Documentation-Compendium.svg)](https://github.com/kylelobo/The-Documentation-Compendium/issues)
-[![GitHub Pull Requests](https://img.shields.io/github/issues-pr/kylelobo/The-Documentation-Compendium.svg)](https://github.com/kylelobo/The-Documentation-Compendium/pulls)
+[![Code-Style](https://img.shields.io/badge/style-standard-green.svg)](https://standardjs.com/rules.html)
+[![GitHub Issues](https://img.shields.io/github/issues/systemfiles/gitbuilder-io.svg)](https://github.com/SystemFiles/gitbuilder-io/issues)
+[![GitHub Pull Requests](https://img.shields.io/github/issues-pr/systemfiles/gitbuilder-io.svg)](https://github.com/SystemFiles/gitbuilder-io/pulls)
+[![Building](https://travis-ci.com/SystemFiles/gitbuilder-io.svg?token=6Y7YdX9nje6DsLwKzn5D&branch=master)](https://travis-ci.com/github/SystemFiles/gitbuilder-io)
+[![Downloads](https://img.shields.io/npm/dm/gitbuilder-io.svg)](https://www.npmjs.com/package/gitbuilder-io)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](/LICENSE)
 
 </div>
 
 ---
 
-<p align="center"> Few lines describing your project.
+<p align="center"> A simple, easy-to-use Git project builder (ONLY supports GitHub currently)
     <br> 
 </p>
 
 ## 📝 Table of Contents
 
 - [About](#about)
+- [Changelog](/CHANGELOG.md)
 - [Getting Started](#getting_started)
-- [Deployment](#deployment)
 - [Usage](#usage)
-- [Built Using](#built_using)
-- [TODO](../TODO.md)
-- [Contributing](../CONTRIBUTING.md)
 - [Authors](#authors)
-- [Acknowledgments](#acknowledgement)
 
 ## 🧐 About <a name = "about"></a>
 
-Write about 1-2 paragraphs describing the purpose of your project.
+gitBuilder.io is a simple CLI tool that I believe everyone should have installed on their dev machines. This tool, with it's extensible templates library, allows developers to get up and running very quickly and without all the boring environment and repository setup. gitBuilder.io will start by asking you a couple of basic questions about your project and then will give you a detailed breakdown of how it is building your project the entire way through. After your project is built, you are presented with all the details of your project and the location of your project on Github. At this point, you are ready to start coding! Just like that 🏎💨
 
-## 🏁 Getting Started <a name = "getting_started"></a>
+## 🎈 Usage <a name="usage"></a>
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See [deployment](#deployment) for notes on how to deploy the project on a live system.
+If you would like to download this tool for your own use, you may to so by downloading the package globally from NPM
+
+```
+npm install -g gitbuilder-io
+```
+
+## 🏁 Getting Started with Development <a name = "getting_started"></a>
+
+If you would like to help out by adding your own templates or possibly some new features to the project, you can follow these steps.
+
+### Clone the project
+
+You'll need to close the project to start working on it
+
+```
+git clone https://github.com/SystemFiles/gitbuilder-io.git
+```
 
 ### Prerequisites
 
-What things you need to install the software and how to install them.
+First you will need to install a few things if you don't have them already.
 
 ```
-Give examples
+Node
+NPM
 ```
 
 ### Installing
 
-A step by step series of examples that tell you how to get a development env running.
-
-Say what the step will be
+To install project dependencies you need only one command
 
 ```
-Give the example
+npm install
 ```
 
-And repeat
+### Adding a Template
+
+Adding a template is super easy. Simply copy the project you want to use as a template into the [templates/projects/](/templates/projects/) folder. Then create a pull request so that we can add your template to the application in the next release!
+
+⚠️ Please make sure your template is working and does not include any inappropriate content. ⚠️
+
+### Adding a Feature
+
+Want to see something new in gitBuider.io? Well you can do so easily by cloning the repository
 
 ```
-until finished
+git clone https://github.com/SystemFiles/gitbuilder-io.git
 ```
 
-End with an example of getting some data out of the system or using it for a little demo.
-
-## 🔧 Running the tests <a name = "tests"></a>
-
-Explain how to run the automated tests for this system.
-
-### Break down into end to end tests
-
-Explain what these tests test and why
+then make your changes on a branch with the format `feature/feature_name` or `bugfix/name_of_bug_or_issue`
 
 ```
-Give an example
+git checkout -b feature/feature_name
 ```
 
-### And coding style tests
+then submit a `pull_request` and I will make sure that your new feature is added.
 
-Explain what these tests test and why
+⚠️ Please note: code changes/feature updates MUST follow the [standard](https://standardjs.com/rules.html) code style guidelines for which this project is following as well as pass all linting/tests in `pull_request` before being merged with `master`. ⚠️
 
-```
-Give an example
-```
-
-## 🎈 Usage <a name="usage"></a>
-
-Add notes about how to use the system.
-
-## 🚀 Deployment <a name = "deployment"></a>
-
-Add additional notes about how to deploy this on a live system.
-
-## ⛏️ Built Using <a name = "built_using"></a>
-
-- [NodeJS](https://www.nodejs.com/) - Language
+## 🐛 Submitting a bug report / issue
+Please use an issue template provided. Create your report [here](https://github.com/SystemFiles/gitbuilder-io/issues)
 
 ## ✍️ Authors <a name = "authors"></a>
 
