@@ -13,7 +13,7 @@
 
 ---
 
-<p align="center"> A simple, easy-to-use Git project builder (ONYL supports GitHub currently)
+<p align="center"> A simple, easy-to-use Git project builder (ONLY supports GitHub currently)
     <br> 
 </p>
 
