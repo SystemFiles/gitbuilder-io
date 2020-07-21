@@ -22,7 +22,7 @@ const run = async () => {
 			{
 				title : 'Creating local project directory (not exists)',
 				task  : async () => await files.makeProjectDirectory(projectDetails.project_name),
-				skip  : () => files.directoryExists(`${files.getCurrentDirectory()}/${projectDetails.project_name}`)
+				skip  : () => files.directoryExists(`${files.getCurrentDirectory()}/${projectDetails.project_name}/`)
 			},
 			{
 				title : 'Initialize project as Git project',
@@ -49,8 +49,7 @@ const run = async () => {
 						projectDetails.project_name,
 						projectDetails.project_lang,
 						projectDetails.project_type
-					),
-				skip  : () => false
+					)
 			}
 		],
 		{ concurrent: true }
@@ -93,20 +92,17 @@ const run = async () => {
 					throw new Error(`Problem creating remote repository. ${err}`)
 				})
 			},
-			// skip  : () => !projectDetails.init_resp
-			skip  : () => true
+			skip  : () => !projectDetails.init_resp
 		},
 		{
 			title : 'Attach local project repository to remote',
 			task  : async () => await repo.attachToRemote(projectDetails.project_name, remoteURL),
-			// skip  : () => !projectDetails.init_resp
-			skip  : () => true
+			skip  : () => !projectDetails.init_resp
 		},
 		{
 			title : 'Publish to repository with project template',
 			task  : async () => await repo.publishProjectContent(projectDetails.project_name),
-			// skip  : () => remoteURL === null
-			skip  : () => true
+			skip  : () => remoteURL === null
 		}
 	])
 		.run()
