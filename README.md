@@ -6,7 +6,11 @@
 <div align="center">
 
 [![Status](https://img.shields.io/badge/status-active-success.svg)]()
-[![CI Build](https://travis-ci.com/SystemFiles/gitbuilder-io.svg?token=6Y7YdX9nje6DsLwKzn5D&branch=master)](https://travis-ci.com/github/SystemFiles/gitbuilder-io)
+[![Code-Style](https://img.shields.io/badge/style-standard-green.svg)](https://standardjs.com/rules.html)
+[![GitHub Issues](https://img.shields.io/github/issues/systemfiles/gitbuilder-io.svg)](https://github.com/SystemFiles/gitbuilder-io/issues)
+[![GitHub Pull Requests](https://img.shields.io/github/issues-pr/systemfiles/gitbuilder-io.svg)](https://github.com/SystemFiles/gitbuilder-io/pulls)
+[![Building](https://travis-ci.com/SystemFiles/gitbuilder-io.svg?token=6Y7YdX9nje6DsLwKzn5D&branch=master)](https://travis-ci.com/github/SystemFiles/gitbuilder-io)
+[![Downloads](https://img.shields.io/npm/dm/gitbuilder-io.svg)](https://www.npmjs.com/package/gitbuilder-io)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](/LICENSE)
 
 </div>
@@ -20,6 +24,7 @@
 ## 📝 Table of Contents
 
 - [About](#about)
+- [Changelog](/CHANGELOG.md)
 - [Getting Started](#getting_started)
 - [Usage](#usage)
 - [Authors](#authors)
@@ -28,7 +33,15 @@
 
 gitBuilder.io is a simple CLI tool that I believe everyone should have installed on their dev machines. This tool, with it's extensible templates library, allows developers to get up and running very quickly and without all the boring environment and repository setup. gitBuilder.io will start by asking you a couple of basic questions about your project and then will give you a detailed breakdown of how it is building your project the entire way through. After your project is built, you are presented with all the details of your project and the location of your project on Github. At this point, you are ready to start coding! Just like that 🏎💨
 
-## 🏁 Getting Started <a name = "getting_started"></a>
+## 🎈 Usage <a name="usage"></a>
+
+If you would like to download this tool for your own use, you may to so by downloading the package globally from NPM
+
+```
+npm install -g gitbuilder-io
+```
+
+## 🏁 Getting Started with Development <a name = "getting_started"></a>
 
 If you would like to help out by adding your own templates or possibly some new features to the project, you can follow these steps.
 
@@ -57,13 +70,30 @@ To install project dependencies you need only one command
 npm install
 ```
 
-## 🎈 Usage <a name="usage"></a>
+### Adding a Template
 
-If you would like to download this tool for your own use, you may to so by downloading the package globally from NPM
+Adding a template is super easy. Simply copy the project you want to use as a template into the [templates/projects/](/templates/projects/) folder. Then create a pull request so that we can add your template to the application in the next release! ⚠️ Please make sure your template is working and does not include any inappropriate content. ⚠️
+
+### Adding a Feature
+
+Want to see something new in gitBuider.io? Well you can do so easily by cloning the repository
 
 ```
-npm install -g gitbuilder-io
+git clone https://github.com/SystemFiles/gitbuilder-io.git
 ```
+
+then make your changes on a branch with the format `feature/feature_name` or `bugfix/name_of_bug_or_issue`
+
+```
+git checkout -b feature/feature_name
+```
+
+then submit a `pull_request` and I will make sure that your new feature is added.
+
+⚠️ Please note: code changes/feature updates MUST follow the [standard](https://standardjs.com/rules.html) code style guidelines for which this project is following as well as pass all linting/tests in `pull_request` before being merged with `master`. ⚠️
+
+## 🐛 Submitting a bug report / issue
+Please use an issue template provided. Create your report [here](https://github.com/SystemFiles/gitbuilder-io/issues)
 
 ## ✍️ Authors <a name = "authors"></a>
 
