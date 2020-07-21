@@ -14,6 +14,7 @@ const run = async () => {
 	// Auth with GitHub using OAuth && Gather project information
 	let octokitInstance = await github.getInstance()
 	let projectDetails = await inquirer.askProjectDetails()
+	let remoteURL = ''
 
 	// Start building local repository
 	if (!files.directoryExists(`${files.getCurrentDirectory()}/${projectDetails.project_name}`)) {
@@ -63,22 +64,20 @@ const run = async () => {
 		{
 			title : 'Create remote repository',
 			task  : async () => {
-				projectDetails['https_url'] = await repo
-					.createRemoteRepo(octokitInstance, projectDetails)
-					.catch((err) => {
-						throw new Error(`Problem creating remote repository. ${err}`)
-					})
+				remoteURL = await repo.createRemoteRepo(octokitInstance, projectDetails).catch((err) => {
+					throw new Error(`Problem creating remote repository. ${err}`)
+				})
 			}
 		},
 		{
 			title : 'Attach local project repository to remote',
-			task  : async () => await repo.attachToRemote(projectDetails.project_name, projectDetails.https_url),
+			task  : async () => await repo.attachToRemote(projectDetails.project_name, remoteURL),
 			skip  : () => projectDetails.init_resp === null
 		},
 		{
 			title : 'Publish to repository with project template',
 			task  : async () => await repo.publishProjectContent(projectDetails.project_name),
-			skip  : () => projectDetails.https_url.length === 0
+			skip  : () => remoteURL === null
 		}
 	])
 		.run()
@@ -86,7 +85,7 @@ const run = async () => {
 			console.log(chalk.greenBright('Successfully created remote repository and connected to local git project!'))
 		)
 
-	return projectDetails.https_url
+	return remoteURL
 }
 
 run()
