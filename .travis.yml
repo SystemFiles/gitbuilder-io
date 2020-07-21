@@ -5,7 +5,7 @@ cache:
   npm: true
 
 before_script:
-  - 'cd ${TRAVIS_BUILD_DIR}/ && export VERSION=$(cat package.json | grep version | head -1 | awk -F: ''{ print $2 }'' | sed ''s/[",]//g'' | tr -d ''[[:space:]]'')'
+  - cd ${TRAVIS_BUILD_DIR}/ && export VERSION=$(node -p -e "require('./package.json').version")
   - echo `VERSION = ${VERSION}`
 
 stages:
