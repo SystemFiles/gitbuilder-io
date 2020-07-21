@@ -72,7 +72,9 @@ npm install
 
 ### Adding a Template
 
-Adding a template is super easy. Simply copy the project you want to use as a template into the [templates/projects/](/templates/projects/) folder. Then create a pull request so that we can add your template to the application in the next release! ⚠️ Please make sure your template is working and does not include any inappropriate content. ⚠️
+Adding a template is super easy. Simply copy the project you want to use as a template into the [templates/projects/](/templates/projects/) folder. Then create a pull request so that we can add your template to the application in the next release!
+
+⚠️ Please make sure your template is working and does not include any inappropriate content. ⚠️
 
 ### Adding a Feature
 
