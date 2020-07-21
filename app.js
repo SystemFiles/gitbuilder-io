@@ -8,13 +8,36 @@ const repo = require('./lib/repo')
 const inquirer = require('./lib/inquirer')
 const github = require('./lib/github')
 const files = require('./lib/files')
+const command = require('./lib/command')
 
 const run = async () => {
 	sayTitle(version)
-	// Auth with GitHub using OAuth && Gather project information
+
+	let commandList = [
+		'git',
+		'node',
+		'pip',
+		'python',
+		'npm'
+	]
+
+	await new Listr([
+		{
+			title : 'Check for required CLI dependencies',
+			task  : async () => await command.checkCommands(commandList),
+			skip  : () => false
+		}
+	])
+		.run()
+		.catch((err) => {
+			throw new Error(`Error => ${err}`)
+		})
+
+	// Start application once we are sure we have all required dependencies
+	sayTitle(version)
 	let octokitInstance = await github.getInstance()
 	let projectDetails = await inquirer.askProjectDetails()
-	let remoteURL = ''
+	let remoteURL
 
 	console.log(chalk.bold(`\n--------- [ Starting local build for ${projectDetails.project_name} ] ---------\n`))
 	await new Listr(
