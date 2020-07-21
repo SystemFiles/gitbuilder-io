@@ -84,9 +84,28 @@ const run = async () => {
 		}
 	])
 		.run()
-		.then(() =>
+		.then(() => {
 			console.log(chalk.greenBright('Successfully created remote repository and connected to local git project!'))
-		)
+			let commands = ''
+			switch (projectDetails.project_lang) {
+				case 'nodejs':
+					commands = '- npm i'
+					break
+				case 'python':
+					commands = '- python3 -m venv env\n- source env/bin/activate\n- pip3 install -r requirements.txt'
+					break
+				default:
+					commands = 'NONE_SPECIFIED'
+					break
+			}
+			commands.length > 0
+				? console.log(
+						chalk.cyan(
+							`Make sure to run the following commands in your project directory:\n${projectDetails.project_lang}`
+						)
+					)
+				: console.log('')
+		})
 
 	return remoteURL
 }
