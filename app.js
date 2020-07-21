@@ -67,17 +67,20 @@ const run = async () => {
 				remoteURL = await repo.createRemoteRepo(octokitInstance, projectDetails).catch((err) => {
 					throw new Error(`Problem creating remote repository. ${err}`)
 				})
-			}
+			},
+			skip  : () => true
 		},
 		{
 			title : 'Attach local project repository to remote',
 			task  : async () => await repo.attachToRemote(projectDetails.project_name, remoteURL),
-			skip  : () => projectDetails.init_resp === null
+			// skip  : () => projectDetails.init_resp === null
+			skip  : () => true
 		},
 		{
 			title : 'Publish to repository with project template',
 			task  : async () => await repo.publishProjectContent(projectDetails.project_name),
-			skip  : () => remoteURL === null
+			// skip  : () => remoteURL === null
+			skip  : () => true
 		}
 	])
 		.run()
