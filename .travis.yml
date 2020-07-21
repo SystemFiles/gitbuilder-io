@@ -5,7 +5,7 @@ cache:
   npm: true
 
 before_script:
-  - cd ${TRAVIS_BUILD_DIR}/ && export VERSION=$(npm version patch | cut -c 2-)
+  - 'cd ${TRAVIS_BUILD_DIR}/ && export VERSION=$(cat package.json | grep version | head -1 | awk -F: ''{ print $2 }'' | sed ''s/[",]//g'' | tr -d ''[[:space:]]'')'
   - echo `VERSION = ${VERSION}`
 
 stages:
@@ -29,6 +29,9 @@ jobs:
       script:
         - npm install --only=dev
         - npm run test
+
+before_deploy:
+  - "git tag $VERSION && git push --tags"
 
 deploy:
   provider: npm
