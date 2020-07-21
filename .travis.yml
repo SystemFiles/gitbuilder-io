@@ -1,0 +1,42 @@
+language: node_js
+node_js:
+  - "stable"
+cache:
+  npm: true
+
+before_script:
+  - cd ${TRAVIS_BUILD_DIR}/ && export VERSION=$(node -p -e "require('./package.json').version")
+  - echo "VERSION = ${VERSION}"
+
+stages:
+  - name: lint
+    if: branch != master
+  - name: test
+    if: type = pull_request
+
+jobs:
+  allow_failures:
+    - env:
+        - CAN_FAIL=true
+  include:
+    - stage: lint
+      env:
+        - CAN_FAIL=true
+      script:
+        - npm install --only=dev
+        - npm run lint
+    - stage: test
+      script:
+        - npm install --only=dev
+        - npm run test
+
+before_deploy:
+  - "git tag $VERSION && git push --tags"
+
+deploy:
+  provider: npm
+  tag: ${VERSION}
+  email: "${NPM_AUTH_EMAIL}"
+  api_key: "${NPM_AUTH_TOKEN}"
+  on:
+    branch: master
