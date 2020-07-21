@@ -6,7 +6,7 @@ cache:
 
 before_script:
   - cd ${TRAVIS_BUILD_DIR}/ && export VERSION=$(node -p -e "require('./package.json').version")
-  - echo `VERSION = ${VERSION}`
+  - echo "VERSION = ${VERSION}"
 
 stages:
   - name: lint
