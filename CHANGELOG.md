@@ -8,7 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [1.0.2] - July 23, 2020
 
-- No changes/additions/deletions in code (re-publish npm)
+- Renamed gitbuilder-io package => gitbuilder for easier use/readability
 
 ## [1.0.1] - July 22, 2020
 
