@@ -38,13 +38,13 @@ gitBuilder.io is a simple CLI tool that I believe everyone should have installed
 If you would like to download this tool for your own use, you may to so by downloading the package globally from NPM
 
 ```
-npm install -g gitbuilder-io
+npm install -g gitbuilder
 ```
 
 Start the tool and follow the prompts to build your project
 
 ```
-gitbuilder-io
+gitbuilder
 ```
 
 ## 🏁 Getting Started with Development <a name = "getting_started"></a>

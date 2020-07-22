@@ -1,6 +1,6 @@
 {
-	"name": "gitbuilder-io",
-	"version": "1.0.1",
+	"name": "gitbuilder",
+	"version": "1.0.2",
 	"description": "A CLI for bootstrapping your git projects",
 	"main": "app.js",
 	"scripts": {
@@ -26,7 +26,7 @@
 		"url": "https://github.com/SystemFiles/gitbuilder-io/issues"
 	},
 	"bin": {
-		"gitbuilder-io": "./app.js"
+		"gitbuilder": "./app.js"
 	},
 	"dependencies": {
 		"@octokit/auth-token": "^2.4.2",
