@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Released]
 
+## [1.0.2] - July 23, 2020
+
+- No changes/additions/deletions in code (re-publish npm)
+
 ## [1.0.1] - July 22, 2020
 
 ### Added
