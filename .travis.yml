@@ -14,7 +14,7 @@ stages:
   - name: test
     if: type = pull_request
   - name: deploy
-    if: branch = production
+    if: branch = master
 
 jobs:
   allow_failures:
