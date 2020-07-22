@@ -31,15 +31,14 @@ jobs:
       script:
         - npm install --only=dev
         - npm run test
-
-before_deploy:
-  - "git tag $VERSION && git push --tags"
-
-deploy:
-  provider: npm
-  tag: ${VERSION}
-  email: "${NPM_AUTH_EMAIL}"
-  api_key: "${NPM_AUTH_TOKEN}"
-  on:
-    tags: true
-    branch: master
+    - stage: deploy
+      script:
+        - "git tag $VERSION && git push --tags"
+      deploy:
+        provider: npm
+        tag: ${VERSION}
+        email: "${NPM_AUTH_EMAIL}"
+        api_key: "${NPM_AUTH_TOKEN}"
+        on:
+          tags: true
+          branch: master
