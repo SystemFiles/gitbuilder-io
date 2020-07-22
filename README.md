@@ -76,6 +76,8 @@ Adding a template is super easy. Simply copy the project you want to use as a te
 
 ⚠️ Please make sure your template is working and does not include any inappropriate content. ⚠️
 
+> Supported Languages: Python, NodeJS
+
 ### Adding a Feature
 
 Want to see something new in gitBuider.io? Well you can do so easily by cloning the repository
