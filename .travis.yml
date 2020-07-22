@@ -10,11 +10,11 @@ before_script:
 
 stages:
   - name: lint
-    if: branch != master
+    if: type = pull_request
   - name: test
     if: type = pull_request
   - name: deploy
-    if: branch = master
+    if: branch = production
 
 jobs:
   allow_failures:
