@@ -41,6 +41,12 @@ If you would like to download this tool for your own use, you may to so by downl
 npm install -g gitbuilder-io
 ```
 
+Start the tool and follow the prompts to build your project
+
+```
+gitbuilder-io
+```
+
 ## 🏁 Getting Started with Development <a name = "getting_started"></a>
 
 If you would like to help out by adding your own templates or possibly some new features to the project, you can follow these steps.
