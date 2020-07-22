@@ -32,6 +32,8 @@ jobs:
         - npm install --only=dev
         - npm run test
     - stage: deploy
+      script:
+        - npm link
       deploy:
         provider: npm
         email: "${NPM_AUTH_EMAIL}"

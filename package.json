@@ -25,6 +25,9 @@
 	"bugs": {
 		"url": "https://github.com/SystemFiles/gitbuilder-io/issues"
 	},
+	"bin": {
+		"gitbuilder-io": "./app.js"
+	},
 	"dependencies": {
 		"@octokit/auth-token": "^2.4.2",
 		"@octokit/rest": "^18.0.1",
