@@ -1,6 +1,6 @@
 <p align="center">
   <a href="" rel="noopener">
- <img width=376px height=265px src="./doc/logo.png" alt="gitBuilder.io Logo"></a>
+ <img width=376px height=265px src="https://i.imgur.com/oL6UMJl.png" alt="gitBuilder Logo"></a>
 </p>
 
 <div align="center">
@@ -41,11 +41,37 @@ If you would like to download this tool for your own use, you may to so by downl
 npm install -g gitbuilder
 ```
 
-Start the tool and follow the prompts to build your project
+Start the tool
 
 ```
-gitbuilder
+gitbuilder [options]
 ```
+
+Select a login method
+
+```
+Basic Login
+OR
+OAuth Token
+```
+
+Login and follow the simple prompts to build your project! 🙂🥂
+
+### Available Options
+
+- reset: `gitbuilder --reset` => Resets any stored auth tokens on your machine so you can re-login or switch accounts
+
+### Required Personal Access Token Permissions
+
+Following principle of least privillage
+
+- repo
+- repo:status
+- public_repo
+- user
+- read:user
+- user:email
+- user:follow
 
 ## 🏁 Getting Started with Development <a name = "getting_started"></a>
 
