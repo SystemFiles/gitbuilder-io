@@ -3,6 +3,7 @@
 // Load running dependencies
 const chalk = require('chalk')
 const Listr = require('listr')
+const process = require('process')
 const { program } = require('commander')
 
 // Local require
@@ -24,7 +25,7 @@ const run = async () => {
 
 	// Reset stored tokens (delete)
 	if (program.reset) {
-		let res = github.resetStoredTokens()
+		github.resetStoredTokens()
 	}
 
 	let commandList = [
