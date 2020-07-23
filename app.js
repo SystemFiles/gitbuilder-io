@@ -1,7 +1,10 @@
 #! /usr/bin/env node
 
+// Load running dependencies
 const chalk = require('chalk')
 const Listr = require('listr')
+const process = require('process')
+const { program } = require('commander')
 
 // Local require
 const { version } = require('./package.json')
@@ -12,15 +15,21 @@ const github = require('./lib/github')
 const files = require('./lib/files')
 const command = require('./lib/command')
 
+// Set Commandline options/flags
+program.option('-r --reset', 'Reset your stored auth tokens.')
+program.parse(process.argv)
+
+// Setup main/core program
 const run = async () => {
 	sayTitle(version)
 
+	// Reset stored tokens (delete)
+	if (program.reset) {
+		github.resetStoredTokens()
+	}
+
 	let commandList = [
-		'git',
-		'node',
-		'pip',
-		'python',
-		'npm'
+		'git'
 	]
 
 	await new Listr([
