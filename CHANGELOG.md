@@ -6,6 +6,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Released]
 
+## [1.1.1] - July 25, 2020
+
+### Removed
+
+- All DS_Store files leftover before adding to .gitignore
+
 ## [1.0.2] - July 23, 2020
 
 - Renamed gitbuilder-io package => gitbuilder for easier use/readability
