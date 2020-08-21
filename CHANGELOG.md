@@ -6,6 +6,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Released]
 
+## [1.1.2] - August 21, 2020
+
+### Added
+
+- Option to disable use of template when creating a project
+- Option to disable remote publishing of the locally created git repository
+
+### Modified
+
+- Added CHANGELOG link to README file
+- Command output configuration
+
 ## [1.1.1] - July 25, 2020
 
 ### Removed

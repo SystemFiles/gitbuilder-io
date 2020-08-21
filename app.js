@@ -83,7 +83,8 @@ const run = async () => {
 						projectDetails.project_name,
 						projectDetails.project_lang,
 						projectDetails.project_type
-					)
+					),
+				skip  : () => !projectDetails.use_template
 			}
 		],
 		{ concurrent: true }
@@ -117,54 +118,74 @@ const run = async () => {
 		})
 
 	// Start building the remote repository
-	console.log(chalk.bold(`\n--------- [ Starting remote build for ${projectDetails.project_name} ] ---------\n`))
-	await new Listr([
-		{
-			title : 'Create remote repository',
-			task  : async () => {
-				remoteURL = await repo.createRemoteRepo(octokitInstance, projectDetails).catch((err) => {
-					throw new Error(`Problem creating remote repository. ${err}`)
-				})
+	if (projectDetails.publish_remote) {
+		console.log(chalk.bold(`\n--------- [ Starting remote build for ${projectDetails.project_name} ] ---------\n`))
+		await new Listr([
+			{
+				title : 'Create remote repository',
+				task  : async () => {
+					remoteURL = await repo.createRemoteRepo(octokitInstance, projectDetails).catch((err) => {
+						throw new Error(`Problem creating remote repository. ${err}`)
+					})
+				},
+				skip  : () => !projectDetails.init_resp
 			},
-			skip  : () => !projectDetails.init_resp
-		},
-		{
-			title : 'Attach local project repository to remote',
-			task  : async () => await repo.attachToRemote(projectDetails.project_name, remoteURL),
-			skip  : () => !projectDetails.init_resp
-		},
-		{
-			title : 'Publish to repository with project template',
-			task  : async () => await repo.publishProjectContent(projectDetails.project_name),
-			skip  : () => remoteURL === null
-		}
-	])
-		.run()
-		.then(() => {
-			console.log(chalk.greenBright('Successfully created remote repository and connected to local git project!'))
-			let commands = ''
-			switch (projectDetails.project_lang) {
-				case 'nodejs':
-					commands = '- npm i'
-					break
-				case 'python':
-					commands = '- python3 -m venv env\n- source env/bin/activate\n- pip3 install -r requirements.txt'
-					break
-				default:
-					commands = 'NONE_SPECIFIED'
-					break
+			{
+				title : 'Attach local project repository to remote',
+				task  : async () => await repo.attachToRemote(projectDetails.project_name, remoteURL),
+				skip  : () => !projectDetails.init_resp
+			},
+			{
+				title : 'Publish to repository with project template',
+				task  : async () => await repo.publishProjectContent(projectDetails.project_name),
+				skip  : () => remoteURL === null
 			}
-			commands.length > 0
-				? console.log(
-						chalk.cyan(`Make sure to run the following commands in your project directory:\n${commands}`)
-					)
-				: console.log('')
-		})
-		.catch((err) => {
-			throw new Error(`Problem running remote build for repository. ${err}`)
-		})
+		])
+			.run()
+			.then(() => {
+				console.log(
+					chalk.greenBright('Successfully created remote repository and connected to local git project!')
+				)
+				let commands = []
+				switch (projectDetails.project_lang) {
+					case 'nodejs':
+						commands = [
+							'npm i'
+						]
+						break
+					case 'python':
+						commands = [
+							'python3 -m venv env',
+							'source env/bin/activate',
+							'pip3 install -r requirements.txt'
+						]
+						break
+					default:
+						commands = [
+							'NONE_SPECIFIED'
+						]
+						break
+				}
+				commands.length > 0
+					? console.log(
+							chalk.cyan(
+								`Make sure to run the following commands in your project directory:\n- ${commands.join(
+									'\n- '
+								)}`
+							)
+						)
+					: console.log('')
+			})
+			.catch((err) => {
+				throw new Error(`Problem running remote build for repository. ${err}`)
+			})
 
-	return remoteURL
+		// Return the remote URL for the user to check their remote repository
+		return remoteURL
+	} else {
+		console.log(chalk.bgYellow(`\nYou have selected to not publish this local repository to remote...skipping...`))
+		return '[ UNPUBLISHED ]'
+	}
 }
 
 run()

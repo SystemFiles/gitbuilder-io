@@ -33,6 +33,10 @@
 
 gitBuilder.io is a simple CLI tool that I believe everyone should have installed on their dev machines. This tool, with it's extensible templates library, allows developers to get up and running very quickly and without all the boring environment and repository setup. gitBuilder.io will start by asking you a couple of basic questions about your project and then will give you a detailed breakdown of how it is building your project the entire way through. After your project is built, you are presented with all the details of your project and the location of your project on Github. At this point, you are ready to start coding! Just like that 🏎💨
 
+## 🗒 Changelog <a name = "changelog"></a>
+
+Please take a look at the current changes and progress on the [Changelog](/CHANGELOG.md)
+
 ## 🎈 Usage <a name="usage"></a>
 
 If you would like to download this tool for your own use, you may to so by downloading the package globally from NPM
