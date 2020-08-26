@@ -78,13 +78,28 @@ const run = async () => {
 				skip  : () => !projectDetails.include_cicd
 			},
 			{
-				title : 'Copy project structure template',
-				task  : async () =>
-					await files.copyProjectTemplate(
-						projectDetails.project_name,
-						projectDetails.project_lang,
-						projectDetails.project_type
-					),
+				title : 'Copy project template to target project directory',
+				task  : async () => {
+					if (!projectDetails.use_external) {
+						// Use template from remote storage API
+						await files.copyProjectTemplate(
+							projectDetails.project_name,
+							projectDetails.project_lang,
+							projectDetails.project_type
+						)
+					} else {
+						// Using template from Github repository
+						projectDetails.selected_template === 'CREATE_NEW'
+							? await files.copyProjectTemplateFromRepo(
+									projectDetails.project_name,
+									projectDetails.new_template
+								)
+							: await files.copyProjectTemplateFromRepo(
+									projectDetails.project_name,
+									projectDetails.selected_template
+								)
+					}
+				},
 				skip  : () => !projectDetails.use_template
 			}
 		],
