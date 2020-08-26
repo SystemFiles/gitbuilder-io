@@ -29,7 +29,8 @@ const run = async () => {
 	}
 
 	let commandList = [
-		'git'
+		'git',
+		'curl'
 	]
 
 	await new Listr([

@@ -6,6 +6,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Released]
 
+## [2.0.0] - August 25, 2020
+
+### Added
+
+- Pull template from GitHub repository
+- Connection to REST API to pull templates from Cloud blob storage on DO
+- New command-line Requirements: curl
+
+### Modified
+
+- Replaced CI/CD from Travis CI to Github Actions
+
+### Removed
+
+- Local templates repository from project (should greatly reduce file size)
+
 ## [1.1.2] - August 21, 2020
 
 ### Added
