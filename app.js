@@ -29,8 +29,7 @@ const run = async () => {
 	}
 
 	let commandList = [
-		'git',
-		'curl'
+		'git'
 	]
 
 	await new Listr([
@@ -199,7 +198,7 @@ const run = async () => {
 		// Return the remote URL for the user to check their remote repository
 		return remoteURL
 	} else {
-		console.log(chalk.bgYellow(`\nYou have selected to not publish this local repository to remote...skipping...`))
+		console.log(chalk.gray(`\nYou have selected to not publish this local repository to remote...skipping...`))
 		return '[ UNPUBLISHED ]'
 	}
 }

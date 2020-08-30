@@ -12,7 +12,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Pull template from GitHub repository [remote-templates.js](/lib/remote-templates.js)
 - Connection to REST API to pull templates from Cloud blob storage on DO
-- New command-line Requirements: curl
 
 ### Modified
 
