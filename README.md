@@ -96,7 +96,6 @@ First you will need to install a few things if you don't have them already.
 ```
 Node
 NPM
-Curl
 ```
 
 ### Installing

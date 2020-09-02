@@ -32,6 +32,7 @@ const run = async () => {
 		'git'
 	]
 
+	// Run check for required dependencies on the machine running this program
 	await new Listr([
 		{
 			title : 'Check for required CLI dependencies',
