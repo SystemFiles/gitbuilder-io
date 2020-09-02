@@ -1,1 +1,0 @@
-Add your assets to this folder (images, etc..)

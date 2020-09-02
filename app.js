@@ -32,6 +32,7 @@ const run = async () => {
 		'git'
 	]
 
+	// Run check for required dependencies on the machine running this program
 	await new Listr([
 		{
 			title : 'Check for required CLI dependencies',
@@ -77,13 +78,28 @@ const run = async () => {
 				skip  : () => !projectDetails.include_cicd
 			},
 			{
-				title : 'Copy project structure template',
-				task  : async () =>
-					await files.copyProjectTemplate(
-						projectDetails.project_name,
-						projectDetails.project_lang,
-						projectDetails.project_type
-					),
+				title : 'Copy project template to target project directory',
+				task  : async () => {
+					if (!projectDetails.use_external) {
+						// Use template from remote storage API
+						await files.copyProjectTemplate(
+							projectDetails.project_name,
+							projectDetails.project_lang,
+							projectDetails.project_type
+						)
+					} else {
+						// Using template from Github repository
+						projectDetails.selected_template === 'CREATE_NEW'
+							? await files.copyProjectTemplateFromRepo(
+									projectDetails.project_name,
+									projectDetails.new_template
+								)
+							: await files.copyProjectTemplateFromRepo(
+									projectDetails.project_name,
+									projectDetails.selected_template
+								)
+					}
+				},
 				skip  : () => !projectDetails.use_template
 			}
 		],
@@ -183,7 +199,7 @@ const run = async () => {
 		// Return the remote URL for the user to check their remote repository
 		return remoteURL
 	} else {
-		console.log(chalk.bgYellow(`\nYou have selected to not publish this local repository to remote...skipping...`))
+		console.log(chalk.gray(`\nYou have selected to not publish this local repository to remote...skipping...`))
 		return '[ UNPUBLISHED ]'
 	}
 }

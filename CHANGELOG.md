@@ -1,10 +1,28 @@
 # Changelog
+
 All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Released]
+
+## [2.0.0] - September 2, 2020
+
+### Added
+
+- Pull template from GitHub repository ([remote-templates.js](/lib/remote-templates.js))
+- Connection to REST API to pull templates from Cloud blob storage on DO (K8s Storage)
+
+### Modified
+
+- Replaced CI/CD from Travis CI to Github Actions
+- Replaced old template selection for build-in to use cloud retrieved templates (K8s Storage)
+- Refactored some method names to be more descriptive
+
+### Removed
+
+- Local templates repository from project (should greatly reduce file size)
 
 ## [1.1.2] - August 21, 2020
 
