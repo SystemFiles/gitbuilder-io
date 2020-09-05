@@ -5,6 +5,23 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [ Not Released ]
+
+## [2.0.1]
+
+### Added
+
+- Instructions for adding remote templates through templates API
+- API Information section to README
+
+### Modified
+
+- README to reflect current and future changes expected for the project
+
+### Removed
+
+- unzipper dependency (unused)
+
 ## [Released]
 
 ## [2.0.0] - September 2, 2020

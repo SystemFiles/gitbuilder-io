@@ -25,13 +25,14 @@
 
 - [About](#about)
 - [Changelog](/CHANGELOG.md)
+- [API](#api)
 - [Getting Started](#getting_started)
 - [Usage](#usage)
 - [Authors](#authors)
 
 ## 🧐 About <a name = "about"></a>
 
-gitBuilder.io is a simple CLI tool that I believe everyone should have installed on their dev machines. This tool, with it's extensible templates library, allows developers to get up and running very quickly and without all the boring environment and repository setup. gitBuilder.io will start by asking you a couple of basic questions about your project and then will give you a detailed breakdown of how it is building your project the entire way through. After your project is built, you are presented with all the details of your project and the location of your project on Github. At this point, you are ready to start coding! Just like that 🏎💨
+GitBuilder.io is a simple CLI tool (project wizard) that helps you bootstrap your projects quickly and easily. This tool, with it's extensible templates library, allows developers to get up and running very quickly and without all the boring environment and repository setup. gitBuilder.io will start by asking you a couple of basic questions about your project and then will give you a detailed breakdown of how it is building your project the entire way through. After your project is built, you are presented with all the details of your project and the location of your project on Github. At this point, you are ready to start coding! Just like that 🏎💨
 
 ## 🗒 Changelog <a name = "changelog"></a>
 
@@ -61,9 +62,11 @@ OAuth Token
 
 Login and follow the simple prompts to build your project! 🙂🥂
 
-### Available Options
+### Available Command-line Options
 
-- reset: `gitbuilder --reset` => Resets any stored auth tokens on your machine so you can re-login or switch accounts
+- reset: `gitbuilder --reset` => Resets any auth tokens, saved settings, and templates stored on your machine so you can start from scratch.
+
+- add_template: `gitbuilder --add_template <AUTH_TOKEN> <path/to/template/zip>` => Will allow you to add a template to our list of built-in templates using a valid OAuth API Token. **Required** -> Zip MUST contain only the template project contents and not a folder containing project contents. (PLANNED)
 
 ### Required Personal Access Token Permissions
 
@@ -77,17 +80,37 @@ Following principle of least privillage
 - user:email
 - user:follow
 
+## 📶 Using the templates API <a name = "api"></a>
+
+We have a simple API for sending and retrieving git project templates from a cloud hosted blob storage.
+
+### Uploading a template
+
+```bash
+curl --location --request POST 'https://gb.sykesdev.ca/api/template?lang=<LANGUAGE>' \
+--header 'Authorization: Bearer <YOUR_API_TOKEN>' \
+--form 'files=@path/to/project/template/template.zip'
+```
+
+### Get list of available templates
+
+```bash
+curl --location --request GET 'https://gb.sykesdev.ca/api/template?lang=<LANGUAGE>'
+```
+
+### Get template filestream
+
+```bash
+curl --location --request GET 'https://gb.sykesdev.ca/api/template?name=<TEMPLATE_NAME>&lang=<LANGUAGE>'
+```
+
 ## 🏁 Getting Started with Development <a name = "getting_started"></a>
 
 If you would like to help out by adding your own templates or possibly some new features to the project, you can follow these steps.
 
 ### Clone the project
 
-You'll need to close the project to start working on it
-
-```
-git clone https://github.com/SystemFiles/gitbuilder-io.git
-```
+You'll need to fork the project to start working on it
 
 ### Prerequisites
 
@@ -100,7 +123,7 @@ NPM
 
 ### Installing
 
-To install project dependencies you need only one command
+Install dependencies using NPM
 
 ```
 npm install
@@ -108,27 +131,33 @@ npm install
 
 ### Adding a Template
 
-Adding a template is super easy. Simply copy the project you want to use as a template into the [templates/projects/](/templates/projects/) folder. Then create a pull request so that we can add your template to the application in the next release!
+There is a new way to add templates now. If you are a project contributor/administrator you can use the template API to add a new **built-in** template to the project (may have to request an OAuth token to be generated for you). If you are a user of the application, you can add templates to your own instance of gitbuilder by creating a public GitHub project for your template or finding one on GitHub, then simply select `add external` when creating a new project and supply the URL to the project and it will be used for your project and added to a list for future use.
 
-⚠️ Please make sure your template is working and does not include any inappropriate content. ⚠️
+To use the API make a POST request to the `https://gb.sykesdev.ca/api/template` endpoint
 
-> Supported Languages: Python, NodeJS
+```bash
+curl --location --request POST 'https://gb.sykesdev.ca/api/template?lang=<LANGUAGE>' \
+--header 'Authorization: Bearer <YOUR_API_TOKEN>' \
+--form 'files=@path/to/project/template/template.zip'
+```
+
+> Supported Languages: Python, NodeJS + More in near future
 
 ### Adding a Feature
 
-Want to see something new in gitBuider.io? Well you can do so easily by cloning the repository
+Want to see something new in gitBuider.io? Well you can do so easily by forking the project. Then clone to your local workspace.
 
-```
-git clone https://github.com/SystemFiles/gitbuilder-io.git
+```bash
+git clone https://github.com/YOU/gitbuilder-io.git
 ```
 
 then make your changes on a branch with the format `feature/feature_name` or `bugfix/name_of_bug_or_issue`
 
-```
+```bash
 git checkout -b feature/feature_name
 ```
 
-then submit a `pull_request` and I will make sure that your new feature is added.
+then submit a `pull_request` and I will make sure that your new feature is reviewed / added.
 
 ⚠️ Please note: code changes/feature updates MUST follow the [standard](https://standardjs.com/rules.html) code style guidelines for which this project is following as well as pass all linting/tests in `pull_request` before being merged with `master`. ⚠️
 
