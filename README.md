@@ -66,7 +66,7 @@ Login and follow the simple prompts to build your project! 🙂🥂
 
 - reset: `gitbuilder --reset` => Resets any auth tokens, saved settings, and templates stored on your machine so you can start from scratch.
 
-- add_template: `gitbuilder --add_template <AUTH_TOKEN> <path/to/template/zip>` => Will allow you to add a template to our list of built-in templates using a valid OAuth API Token. **Required** -> Zip MUST contain only the template project contents and not a folder containing project contents. (PLANNED)
+- add_template: `gitbuilder --add_template/-A` => Will allow you to add a template to our list of built-in templates using a valid OAuth API Token. **Required** -> Zip MUST contain only the template project contents and not a folder containing project contents. (PLANNED)
 
 ### Required Personal Access Token Permissions
 
