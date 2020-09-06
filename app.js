@@ -17,6 +17,11 @@ const command = require('./lib/command')
 
 // Set Commandline options/flags
 program.option('-r --reset', 'Reset your stored auth tokens.')
+program.option(
+	'-A --add_template',
+	'(Secure) Adds a template to list of built-in templates available to all users of GitBuilder.',
+	false
+)
 program.parse(process.argv)
 
 // Setup main/core program
@@ -26,6 +31,12 @@ const run = async () => {
 	// Reset stored tokens (delete)
 	if (program.reset) {
 		github.resetStoredTokens()
+	}
+
+	// Add a template to remote template storage
+	if (program.add_template) {
+		await files.uploadProjectTemplate(await inquirer.askUploadTemplateData())
+		process.exit(0)
 	}
 
 	let commandList = [

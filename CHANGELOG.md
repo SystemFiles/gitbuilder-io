@@ -7,6 +7,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Released]
 
+## [2.1.0] - September 6, 2020
+
+### Added
+
+- Instructions for adding remote templates through templates API
+- API Information section to README
+
+### Modified
+
+- README to reflect current and future changes expected for the project
+
+### Removed
+
+- unzipper dependency (unused)
+
 ## [2.0.0] - September 2, 2020
 
 ### Added
