@@ -1,6 +1,6 @@
 {
 	"name": "gitbuilder-io",
-	"version": "2.0.0",
+	"version": "2.1.0",
 	"description": "A CLI for quickly bootstrapping your git projects",
 	"main": "app.js",
 	"scripts": {

@@ -85,6 +85,7 @@ Following principle of least privillage
 We have a simple API for sending and retrieving git project templates from a cloud hosted blob storage.
 
 ### Uploading a template
+**note:** maxiumum upload size through API is 50MB
 
 ```bash
 curl --location --request POST 'https://gb.sykesdev.ca/api/template?lang=<LANGUAGE>' \
