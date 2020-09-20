@@ -34,6 +34,10 @@
 
 GitBuilder.io is a simple CLI tool (project wizard) that helps you bootstrap your projects quickly and easily. This tool, with it's extensible templates library, allows developers to get up and running very quickly and without all the boring environment and repository setup. gitBuilder.io will start by asking you a couple of basic questions about your project and then will give you a detailed breakdown of how it is building your project the entire way through. After your project is built, you are presented with all the details of your project and the location of your project on Github. At this point, you are ready to start coding! Just like that 🏎💨
 
+---
+This project relies on an external API. See the source code [here](https://github.com/SystemFiles/gitbuilder-templates-api)
+---
+
 ## 🗒 Changelog <a name = "changelog"></a>
 
 Please take a look at the current changes and progress on the [Changelog](/CHANGELOG.md)
