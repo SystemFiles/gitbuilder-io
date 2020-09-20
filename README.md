@@ -43,7 +43,7 @@ Please take a look at the current changes and progress on the [Changelog](/CHANG
 If you would like to download this tool for your own use, you may to so by downloading the package globally from NPM
 
 ```
-npm install -g gitbuilder
+npm install -g gitbuilder-io
 ```
 
 Start the tool
@@ -61,6 +61,16 @@ OAuth Token
 ```
 
 Login and follow the simple prompts to build your project! 🙂🥂
+
+### Docker installation instructions (Safe mode)
+
+If you have Docker installed on your machine and wish to run this application in a containerized environment please follow the instructions below to build a container image and start up the interactive container.
+
+1. You will need to first clone this project onto your machine `git clone https://github.com/SystemFiles/gitbuilder-io.git`
+2. Navigate to the cloned project root directory
+3. Build the container image: `docker build -t sykeben/gitbuilder-io:latest .`
+4. Start up the interactive container `docker run -it sykeben/gitbuilder-io:latest bash`
+5. Once inside the container you can run gitbuilder as you would on any other machine using the `gitbuilder [options] [flags]` command.
 
 ### Available Command-line Options
 
