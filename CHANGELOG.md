@@ -12,11 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - Dockerfile for safe running of gitbuilder if user does not wish to install on their own system or does not have node installed already
-
-### Modified
-
-- Documentation with new demo video
-- Documentation with instructions to run in container environment (safe mode)
+- Instructions to run in container environment (safe mode)
 
 ## [2.1.0] - September 6, 2020
 
