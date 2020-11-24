@@ -1,0 +1,21 @@
+name: Lint
+
+on: push
+
+jobs:
+  run-linter:
+    name: Run linter
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out Git repository
+        uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '14'
+      - name: Install required dependencies and Lint
+        working-directory: "./"
+        run: |
+          npm install --only=dev
+          npm install lodash
+          npm run lint
