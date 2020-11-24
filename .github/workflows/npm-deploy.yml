@@ -22,5 +22,4 @@ jobs:
       uses: JS-DevTools/npm-publish@v1
       with:
         check-version: false
-        tag: "${{ steps.package_info.outputs.version }}"
         token: ${{ secrets.NPM_AUTH_TOKEN }}
