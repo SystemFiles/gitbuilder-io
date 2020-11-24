@@ -5,14 +5,23 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Released]
+## [Unreleased]
 
-## [2.1.1] - September 20, 2020
+## [2.1.1] - November 2020
 
 ### Added
 
+- Bypass option for using remote templates from cloud storage
+- useCloud option added to local user config so users can update whether they want to use cloud resources by default (default true)
+- Fix for repo templating through selected or new github project repo
 - Dockerfile for safe running of gitbuilder if user does not wish to install on their own system or does not have node installed already
 - Instructions to run in container environment (safe mode)
+
+### Modified
+
+- Implemented fix for gitbuilder failing on project init when run from path that has spaces.
+
+## [Released]
 
 ## [2.1.0] - September 6, 2020
 

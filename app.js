@@ -1,4 +1,5 @@
 #! /usr/bin/env node
+// Start point for GitBuilder process
 
 // Load running dependencies
 const chalk = require('chalk')
@@ -14,6 +15,9 @@ const inquirer = require('./lib/inquirer')
 const github = require('./lib/github')
 const files = require('./lib/files')
 const command = require('./lib/command')
+
+// Settings (enable/disable)
+var useCloud
 
 // Set Commandline options/flags
 program.option('-r --reset', 'Reset your stored auth tokens.')
@@ -33,8 +37,15 @@ const run = async () => {
 		github.resetStoredTokens()
 	}
 
+	// Set defaults
+	useCloud = true
+
 	// Add a template to remote template storage
 	if (program.add_template) {
+		if (!useCloud) {
+			console.log(chalk.red("ERROR: Cannot upload project template since we could not reach required cloud endpoint"))
+			process.exit(1)
+		}
 		await files.uploadProjectTemplate(await inquirer.askUploadTemplateData())
 		process.exit(0)
 	}
@@ -91,7 +102,7 @@ const run = async () => {
 			{
 				title : 'Copy project template to target project directory',
 				task  : async () => {
-					if (!projectDetails.use_external) {
+					if (!projectDetails.use_external && useCloud) {
 						// Use template from remote storage API
 						await files.copyProjectTemplate(
 							projectDetails.project_name,
@@ -111,7 +122,7 @@ const run = async () => {
 								)
 					}
 				},
-				skip  : () => !projectDetails.use_template
+				skip  : () => (!projectDetails.use_template)
 			}
 		],
 		{ concurrent: true }
@@ -226,3 +237,7 @@ run()
 	.catch((err) => {
 		console.log(chalk.red(`Error => ${err}`))
 	})
+
+module.exports = {
+	useCloud
+}
