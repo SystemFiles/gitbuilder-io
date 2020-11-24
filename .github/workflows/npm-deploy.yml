@@ -21,5 +21,5 @@ jobs:
     - name: Publish (if version has been updated)
       uses: JS-DevTools/npm-publish@v1
       with:
-        tag: ${{ steps.package_info.outputs.version }}
+        tag: "${{ steps.package_info.outputs.version }}"
         token: ${{ secrets.NPM_AUTH_TOKEN }}
