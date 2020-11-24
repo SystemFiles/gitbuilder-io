@@ -17,4 +17,5 @@ jobs:
         working-directory: "./"
         run: |
           npm install --only=dev
+          npm install lodash
           npm run lint
