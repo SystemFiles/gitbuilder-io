@@ -11,15 +11,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Github Actions workflow
+- Fix for gitbuilder failing on project init when run from path that has spaces.
 - Bypass option for using remote templates from cloud storage
 - useCloud option added to local user config so users can update whether they want to use cloud resources by default (default true)
 - Fix for repo templating through selected or new github project repo
 - Dockerfile for safe running of gitbuilder if user does not wish to install on their own system or does not have node installed already
 - Instructions to run in container environment (safe mode)
 
-### Modified
+### Removed
 
-- Implemented fix for gitbuilder failing on project init when run from path that has spaces.
+- Travis-CI workflow
 
 ## [Released]
 
