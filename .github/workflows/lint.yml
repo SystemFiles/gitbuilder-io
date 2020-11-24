@@ -13,11 +13,8 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: '14'
-      - name: Install required dev dependencies
-        working-directory: "./"
-        run: npm install --only=dev
-      - name: Start linting
+      - name: Install required dependencies and Lint
         working-directory: "./"
         run: |
-          npm install lodash
+          npm install --only=dev
           npm run lint
