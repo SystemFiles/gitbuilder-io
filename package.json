@@ -54,7 +54,8 @@
 	},
 	"devDependencies": {
 		"eslint": "^7.4.0",
-		"nodemon": "^2.0.4"
+		"nodemon": "^2.0.4",
+		"lodash": "^4.17.19"
 	},
 	"homepage": "https://github.com/SystemFiles/gitbuilder-io#readme"
 }
