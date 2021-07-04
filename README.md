@@ -23,6 +23,8 @@
 
 **I have unfortunatly gotten quite busy throughout the year and will likely not have much time to maintain this project further given that I'm moving into my final semester of school before graduation. I hope to bring this project back to life properly as soon as possible.**
 
+---
+
 <p align="center"> A simple, easy-to-use Git project builder (ONLY supports GitHub currently)
     <br> 
 </p>
